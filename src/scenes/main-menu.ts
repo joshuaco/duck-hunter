@@ -1,6 +1,6 @@
 import { COLORS } from '../constants';
-import k from '../context/kaplayCtx';
 import { formatScore } from '../utils';
+import k from '../context/kaplayCtx';
 
 k.loadSprite('menu', '/graphics/menu.png');
 k.loadFont('nes', '/fonts/nintendo-nes-font/nintendo-nes-font.ttf');
