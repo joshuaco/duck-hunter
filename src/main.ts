@@ -1,9 +1,9 @@
 import k from './context/kaplayCtx';
+import { gameScene } from './scenes/game';
 import { menuScene } from './scenes/main-menu';
 
 menuScene();
-
-k.scene('game', () => {});
+gameScene();
 
 k.scene('game-over', () => {});
 
