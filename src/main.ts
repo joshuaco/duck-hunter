@@ -1,6 +1,7 @@
 import k from './context/kaplayCtx';
+import { menuScene } from './scenes/main-menu';
 
-k.scene('main-menu', () => {});
+menuScene();
 
 k.scene('game', () => {});
 
