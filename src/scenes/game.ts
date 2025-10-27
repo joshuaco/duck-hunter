@@ -3,6 +3,7 @@ import { formatScore } from '../utils';
 import k from '../context/kaplayCtx';
 
 k.loadSprite('background', '/graphics/background.png');
+k.loadSprite('cursor', '/graphics/cursor.png');
 
 export function gameScene() {
   k.scene('game', () => {
@@ -14,14 +15,14 @@ export function gameScene() {
     const score = k.add([
       k.text(formatScore(0), { font: 'nes', size: 8 }),
       k.pos(192, 197),
-      k.z(2)
+      k.z(2),
     ]);
 
     const roundCount = k.add([
       k.text('1', { font: 'nes', size: 8 }),
       k.pos(42, 181),
       k.z(2),
-      k.color(COLORS.RED)
+      k.color(COLORS.RED),
     ]);
 
     const duckIcons = k.add([k.pos(95, 198)]);
@@ -36,7 +37,18 @@ export function gameScene() {
       k.rect(0, 8),
       k.pos(25, 198),
       k.z(2),
-      k.color(0, 0, 0)
+      k.color(0, 0, 0),
     ]);
+
+    const cursor = k.add([
+      k.sprite('cursor'),
+      k.anchor('center'),
+      k.pos(),
+      k.z(3),
+    ]);
+
+    k.onUpdate(() => {
+      cursor.moveTo(k.mousePos());
+    });
   });
 }
