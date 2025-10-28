@@ -8,9 +8,10 @@ function createGameManager() {
       'cutscene',
       'round-start',
       'round-end',
+      'hunt-start',
       'hunt-end',
       'duck-hunted',
-      'duck-escaped',
+      'duck-escaped'
     ]),
     {
       isGamePaused: false,
@@ -27,8 +28,8 @@ function createGameManager() {
         this.bulletsLeft = 3;
         this.ducksShotInRound = 0;
         this.duckSpeed = 100;
-      },
-    },
+      }
+    }
   ]);
 }
 
