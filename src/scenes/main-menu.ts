@@ -1,4 +1,4 @@
-import { COLORS } from '../constants';
+import { COLORS, fontConfig } from '../constants';
 import { formatScore } from '../utils';
 import k from '../context/kaplayCtx';
 
@@ -9,7 +9,7 @@ export function menuScene() {
   k.scene('main-menu', () => {
     k.add([k.sprite('menu')]);
     k.add([
-      k.text('CLICK TO START', { font: 'nes', size: 8 }),
+      k.text('CLICK TO START', fontConfig),
       k.anchor('center'),
       k.pos(k.center().x, k.center().y + 40)
     ]);
@@ -17,7 +17,7 @@ export function menuScene() {
     const bestScore = Number(k.getData('best-score')) ?? 0;
 
     k.add([
-      k.text(`TOP SCORE = ${formatScore(bestScore)}`, { font: 'nes', size: 8 }),
+      k.text(`TOP SCORE = ${formatScore(bestScore)}`, fontConfig),
       k.anchor('center'),
       k.pos(k.center().x, 184),
       k.color(COLORS.RED)

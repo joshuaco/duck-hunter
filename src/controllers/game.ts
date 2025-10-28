@@ -1,4 +1,5 @@
 import type { GameObj } from 'kaplay';
+import { fontConfig } from '../constants';
 import k from '../context/kaplayCtx';
 import gameManager from '../manager/game-manager';
 
@@ -22,13 +23,13 @@ const gameController = {
       ]);
 
       textBox.add([
-        k.text(`ROUND`, { font: 'nes', size: 8 }),
+        k.text(`ROUND`, fontConfig),
         k.anchor('center'),
         k.pos(0, -10)
       ]);
 
       textBox.add([
-        k.text(`${gameManager.currentRound}`, { font: 'nes', size: 8 }),
+        k.text(`${gameManager.currentRound}`, fontConfig),
         k.anchor('center'),
         k.pos(0, 5)
       ]);
