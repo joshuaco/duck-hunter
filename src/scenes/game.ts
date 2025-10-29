@@ -3,6 +3,7 @@ import { formatScore } from '../utils';
 import k from '../context/kaplayCtx';
 import gameManager from '../manager/game-manager';
 import gameController from '../controllers/game';
+import createDog from '../entities/dog';
 
 k.loadSprite('background', '/graphics/background.png');
 k.loadSprite('cursor', '/graphics/cursor.png');
@@ -46,8 +47,10 @@ export function gameScene() {
 
     const cursor = k.add([k.sprite('cursor'), k.anchor('center'), k.pos(), k.z(3)]);
 
+    const dog = createDog(k.vec2(0, k.center().y));
+    dog.searchForDucks();
+
     gameController.roundStart(roundCount);
-    gameManager.enterState('round-start', true);
 
     k.onClick(() => {
       if (gameManager.state === 'hunt-start' && !gameManager.isGamePaused) {
@@ -77,6 +80,11 @@ export function gameScene() {
       }
 
       cursor.moveTo(k.mousePos());
+    });
+
+    k.onSceneLeave(() => {
+      dog.destroy();
+      gameManager.resetGameState();
     });
   });
 }
