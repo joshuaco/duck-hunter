@@ -16,18 +16,18 @@ export function gameScene() {
 
     k.add([k.rect(k.width(), k.height()), k.color(COLORS.BLUE), 'sky']);
     k.add([k.sprite('background'), k.pos(0, -10), k.z(1)]);
+    k.add([
+      'round-count',
+      k.text('1', fontConfig),
+      k.pos(42, 181),
+      k.z(2),
+      k.color(COLORS.RED)
+    ]);
 
     const score = k.add([
       k.text(formatScore(0), fontConfig),
       k.pos(192, 197),
       k.z(2)
-    ]);
-
-    const roundCount = k.add([
-      k.text('1', fontConfig),
-      k.pos(42, 181),
-      k.z(2),
-      k.color(COLORS.RED)
     ]);
 
     const duckIcons = k.add([k.pos(95, 198)]);
@@ -49,8 +49,6 @@ export function gameScene() {
 
     const dog = createDog(k.vec2(0, k.center().y));
     dog.searchForDucks();
-
-    gameController.roundStart(roundCount);
 
     k.onClick(() => {
       if (gameManager.state === 'hunt-start' && !gameManager.isGamePaused) {
@@ -84,6 +82,11 @@ export function gameScene() {
 
     k.onSceneLeave(() => {
       dog.destroy();
+      gameController.roundStart.cancel();
+      gameController.huntStart.cancel();
+      gameController.huntEnd.cancel();
+      gameController.duckHunted.cancel();
+      gameController.duckEscaped.cancel();
       gameManager.resetGameState();
     });
   });

@@ -30,6 +30,7 @@ function createDog(position: Vec2) {
   laughingSound.stop();
 
   return k.add([
+    'dog',
     k.sprite('dog'),
     k.pos(position),
     k.state('search', ['search', 'sniff', 'detect', 'jump', 'drop']),
@@ -122,6 +123,7 @@ function createDog(position: Vec2) {
         this.play('mock');
         laughingSound.play();
         await this.slideUpAndDown();
+        laughingSound.stop();
         gameManager.enterState('hunt-end');
       }
     }
